@@ -17,11 +17,13 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- @ ViewResolve가 prefix 경로를 잡고 suffix의 확장자 명을 잡아서 이동시켜줌.  -->
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
 	<context:component-scan base-package="com.test.app" />
+	<context:component-scan base-package="com.test.controller" />
 	
 	
 	

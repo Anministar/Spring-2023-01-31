@@ -12,7 +12,11 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.test.app">
-		<level value="warn" />
+		<level value="info" />
+	</logger>
+	
+	<logger name="com.test.controller">
+		<level value="info" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
