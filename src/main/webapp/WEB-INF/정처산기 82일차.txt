@@ -1,0 +1,59 @@
+
+pom.xml에 들어가서 log4를 찾아보자(ctrl + F)
+<scope>runtime</scope> 를 주석처리하고 프로젝트 우클릭 -maven - update project
+
+maven dependencies 라이브러리 폴더에 들어가면 lo4j-1.2.15 jar를 볼 수 있음
+lo4j는 slf4j랑 비슷하게 생겼음.
+
+src/main/resources 안에 log4j.xml 안에 Appenders는 이렇다 이렇다하는 폼을 지정하는것
+
+Application Loggers의 naem 부분에는 우리가 만들었던 패키지명이 들어가야하고 그 안에 level(수준)을 설정해서 쓸 수 있음. warn으로 바꾸고 HomeController에서 log.warn("Warning Test")이런식으로 넣게 되면 console에 뜨게 됨.
+
+
+@ 의존성 주의 ( Spring을 쓰는 메인 이유 중 하나임.)
+Spring 특징 3가지 웹 브라우져에 검색하기
+스프링은 특정 저장공간(Container라고 함)을 추가해서 스프링에서 관리를 하게됨.
+
+container를 가져오는건 WEB-INF - spring - appServlet - servlet-context.xml 여기 있음.
+
+			# 스프링 특징 #
+제어 역행 : 컨트롤의 제어권이 사용자가 아니라 프레임워크에 있어 필요에 따라 스프링에서 꺼내오는것
+Container는 IoC 컨테이너라고 하고 빈을 만들어놓으면 사용자가 특정 에노테이션을 붙여서 (구성 클래스) 빈을 꺼내쓸 수 있음.
+
+servelt-context.xml에서 Namespaces에서 beans과 context가 체크되어있는지 확인 - 이 작업은 파일간의 충돌을 막아주는 역할을 해줌.
+Beans Graph가 없다면 root-context.xml 우클릭 - spring - add
+
+
+			# DITests #
+@RunWith(SpringJUnit4ClassRunner.class)
+나
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+에러에 대한 걸 찾아보려면 구글에 그냥 복붙하면 에러라고 바로 나옴.
+
+maven spring-test 검색해서 최신 버젼 클릭 - code copy 그리고 pom.xml의 dependencies 제일 밑 태그에서 바로 위에 붙여넣기
+
+
+
+복습할 때 쌤 깃허브 받아서 history에서 02번부터 확인하면 됨.
+
+
+
+
+----------------------여기서 부터 안됐음 --------------------------------
+src/main/java에 com.test.controller 패키지파일 생성 - class파일 SimpleController 생성
+
+스프링 MVC2 구조 웹 브라우져에 검색
+
+
+@ 예외 
+일단 no mapping "appServlet" 이딴식으로 뜨는거 일단 오타잡으니깐 해결됐던게 하나있음.
+일단 Servlet-context.xml에 주석 추가하는걸로 오류가 뜨거나 하지 않음.
+
+
+
+
+Yoil1?year=2023&month=01&day=20 파라미터 전달할때는 주소에 이렇게 적어야함.
+
+
+@@@@@@@@@@@@@@ SimpleController에서 youl3이 jsp 페이지가 안뜸 @@@@@@@@@@@@@@@@@@@@@
+
