@@ -5,10 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<body>
 
-<h1>YOIL3asdpfkloaslkdfjkl as</h1>
+<link rel="stylesheet" type="text/css" href="/resources/css/common.css">
+</head>
+
+
+<body>
+<h1>YOIL3</h1>
 
 </body>
 </html>

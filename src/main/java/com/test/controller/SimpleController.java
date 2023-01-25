@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.test.dto.YoilDto;
@@ -85,7 +86,7 @@ public class SimpleController {
 	
 	// URL Mapping을 위한 에노테이션
 	@RequestMapping("/Yoil3") 
-	public void func3(int year, int month, int day, HttpServletRequest req, HttpServletResponse resp ) throws IOException {
+	public void func3(int year, int month, int day) throws IOException {
 		log.info("/Yoil3 진입....");
 		
 		//파라미터 받기
@@ -160,7 +161,7 @@ public class SimpleController {
 	
 	
 	
-	@RequestMapping("/Yoil6") // URL Mapping을 위한 에노테이션
+	@RequestMapping("/Yoil6") // URL Mapping을 위한 에노테이션, 밑에 Model은 뷰로 이동시켜주는 요소이고, 우리는 그 요소에 속성들을 추가해준 것 뿐임.
 	public String func6(YoilDto dto, Model model ) throws IOException {
 		log.info("/Yoil6 진입....");
 		
@@ -175,9 +176,11 @@ public class SimpleController {
 		char yoil = getYoil(dto);
 		
 		//뷰이동
-		model.addAttribute("year", dto.getYear());
-		model.addAttribute("month", dto.getMonth());
-		model.addAttribute("day", dto.getDay());
+//		model.addAttribute("year", dto.getYear());
+//		model.addAttribute("month", dto.getMonth());
+//		model.addAttribute("day", dto.getDay()); // 속성을 추가해준 부분
+		
+		model.addAttribute("yoildto", dto);
 		model.addAttribute("yoil", yoil);
 		
 		return "yoil/Yoil6";
@@ -195,5 +198,13 @@ public class SimpleController {
 		char yoil = "일월화수목금토".charAt(dayOfweek);
 		return yoil;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

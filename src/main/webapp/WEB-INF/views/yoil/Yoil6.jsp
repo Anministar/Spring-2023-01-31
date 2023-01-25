@@ -9,9 +9,9 @@
 <body>
 
 <h1>YOIL6</h1>
-Year : ${year } <br>
-Month : ${month } <br>
-Day : ${day } <br>
+Year : ${yoildto.year } <br>
+Month : ${yoildto.month } <br>
+Day : ${yoildto.day } <br>
 Yoil : ${yoil } <br>
 </body>
 </html>
