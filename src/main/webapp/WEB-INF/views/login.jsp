@@ -14,12 +14,18 @@
 <link rel="stylesheet" type="text/css" href="resources/css/login.css">
 
 
+<!-- jstl form -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+
 </head>
 <body>
 <section class="container">
 	<div class="msg">${param.msg}</div>
 	<h1>LOGIN</h1>
-	<form name="loginfrm" action=<c:url value="/login" /> method="post">
+	<form:form modelAttribute="loginDto" name="loginfrm" action="${pageContext.request.contextPath }/login" method="post">
+	
+	<div style="font-size : 0.5rem; color : red; text-align : left; margin-bottom : 0px;"><form:errors path="email" /> <br> </div>
 		<input type="text" name="email" placeholder="example@example.com" value="${cookie.email.value }" class="form-control" />
 		<input type="password" name="pwd"  placeholder="Insert Password" class="form-control" />
 	
@@ -30,10 +36,10 @@
 	
 		<button class="btn btn-primary w-100">로그인</button>
 		<a class="w-100 btn btn-secondary" href="javascript:kakaoLogin()">카카오로그인</a>
-		<a href=<c:url value="/member/join" />> 회원가입</a>
+		<a href='<c:url value="/member/join" />'> 회원가입</a>
 		<a href="javascript:void(0)">아이디분실</a>
 		<a href="${pageContext.request.contextPath}/auth/resetpwd.do">패스워드분실</a>
-	</form>
+	</form:form>
 </section>
 
 

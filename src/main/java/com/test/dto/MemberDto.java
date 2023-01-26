@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 public class MemberDto {
 	private String email;
 	private String pwd;
-	private String[] phone;
-	private int zipcode;
+	private String phone;
+	private String zipcode;
 //	@DateTimeFormat(pattern="yyyy+mm+dd") // WebBinder와 동시 적용 시 WebBinder 적용
-	private Date birth; //String --> Date
+//	private Date birth; //String --> Date
 	private String addr1;
 	private String addr2;
-	private int grade;
+	private String grade;
 	
 }
