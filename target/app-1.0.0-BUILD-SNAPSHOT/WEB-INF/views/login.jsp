@@ -11,12 +11,11 @@
 <!-- BSICON -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
-<!-- <link rel="stylesheet" type="text/css" href="resources/css/login.css" > -->
-<style>
-.container{width : 300px; margin:100px auto; text-align:center; position:relative;}
-.container *{margin-bottom:10px;}
-.container .msg{ position:absolute;left:0px;right:0px;top:-25px; margin:auto; font-size:0.5rem; color:gray; padding-left:15px;}
-</style>
+<link rel="stylesheet" type="text/css" href="resources/css/login.css">
+
+
+<!-- jstl form -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
 </head>
@@ -24,7 +23,9 @@
 <section class="container">
 	<div class="msg">${param.msg}</div>
 	<h1>LOGIN</h1>
-	<form name="loginfrm" action="${pageContext.request.contextPath}/login" method="post">
+	<form:form modelAttribute="loginDto" name="loginfrm" action="${pageContext.request.contextPath }/login" method="post">
+	
+	<div style="font-size : 0.5rem; color : red; text-align : left; margin-bottom : 0px;"><form:errors path="email" /> <br> </div>
 		<input type="text" name="email" placeholder="example@example.com" value="${cookie.email.value }" class="form-control" />
 		<input type="password" name="pwd"  placeholder="Insert Password" class="form-control" />
 	
@@ -35,10 +36,10 @@
 	
 		<button class="btn btn-primary w-100">로그인</button>
 		<a class="w-100 btn btn-secondary" href="javascript:kakaoLogin()">카카오로그인</a>
-		<a href="${pageContext.request.contextPath}/member/join">회원가입</a>
+		<a href='<c:url value="/member/join" />'> 회원가입</a>
 		<a href="javascript:void(0)">아이디분실</a>
 		<a href="${pageContext.request.contextPath}/auth/resetpwd.do">패스워드분실</a>
-	</form>
+	</form:form>
 </section>
 
 
