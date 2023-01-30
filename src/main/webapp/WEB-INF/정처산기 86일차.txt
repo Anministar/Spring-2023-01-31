@@ -1,0 +1,29 @@
+Mybatis 설정  --> 2월 3일 시험 문제
+
+
+@ <foreach item="item" collection="list" separator=",">
+
+==> list라는 키값을 가지고 오는 애가 collection이 처리해줌.(연결역할)
+그리고 item에 그 값들을 하나하나 전달해줌.
+
+
+
+@ DB를 사용하는데에 있어 dao를 사용하는데 여기서 두가지 방식이 있음.
+1. Service에서 mapper를 연결하는 방식
+2. Service에서 Dao와 연결되어 있기 때문에 Dao와 mapper를 연결하는 방식
+
+
+
+
+<select id="selectXMLHashMapIf" resultType="hashmap" parameterType="hashmap">
+		select * from tbl_a
+		<if test='type.equals("name")'> 
+			where name=${keyword}
+		</if>	
+			
+	</select>
+
+외부로부터 keyword를 받게 되면 where 조건절을 실행하고 아니라면 그냥 select * from tbl_a 만 실행
+
+
+@ 동적 쿼리 (keyword를 포함시켜 Select하는 것)
