@@ -36,7 +36,7 @@ public class TxTests3 {
 	}
 	@Test
 	public void func3() throws Exception {
-		 				//
+		aservice.func3(); 
 	}
 
 }

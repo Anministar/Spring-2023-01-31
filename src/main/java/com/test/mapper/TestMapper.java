@@ -80,4 +80,6 @@ public interface TestMapper {
 	List<Map<String, Object>> selectXMLHashMap();
 	
 	List<Map<String, Object>> selectXMLHashMapIf(Map<String, Object> map);
+	
+	List<Map<String, Object>> selectXMLhashMapChoose(Map<String, Object> map);
 }

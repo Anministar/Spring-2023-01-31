@@ -22,7 +22,7 @@ public class TxTests2 {
 	
 	@Test
 	public void func1() throws Exception {
-		service.func1(); 			// Tx 기본 값 적용
+		service.func1(); 			// Tx 적용안됨.
 	}
 	@Test
 	public void func2() throws Exception {

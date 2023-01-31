@@ -1,0 +1,44 @@
+JUnit ==> 어플리케이션 테스트 수행 모듈 시험
+
+
+++) Yoil6?year=2023&month=01&day=5
+
+
+
+@RequestMapping("value=/joinform, method=RequestMethod.GET")
+public void doGet() { 	
+	log.info("join form!!...");
+}
+mapping 이후에 처리는 밑의 함수가 하겠다는 거고, method방식을 정하지 않으면 기본적으로 GET 방식으로 전달. mehotd=RequestMethod.GET 이나 mehotd=RequestMethod.POST로 지정할 수 도 있음,.
+
+
+redirect: == response의 sendRedirect를 꺼내 쓰는 것이랑 똑같은 거라고 보면 됨.
+sendRedirect를 걸었을 때 주소에만 msg가 나온다면 join.jsp에 가서 param.msg로 바꾸어줘야함. 왜냐하면 sendRedirect를 걸었을 때는 새로이 파라미터를 전달해주니깐. 새로 받아온 파라미터의 msg(param.msg)가 되어야함.(request가 초기화되고 새로운 request를 파라미터형태로 전달)
+
+
+
+
+++) 1EL c:url 검색(태그 라이브러리)
+ContextPath 설정을 자동으로 해줌.
+
+++) jstl taglib 검색해서 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+resources/link.jsp에다가 추가해주기.
+
+
+++) WebDataBinder 역할 검색하기
+타입 변환 + 데이터 검증(유효성 체크)
+
+MemberJoinController에 @InitBinder을 사용해서 여러 포멧을 지정하고 싶으면 InitBinder을 사용하면 되고 한가지 포멧가지고 간단하게 설정하고 싶으면 MemberDto에 private Date birth위에 @DateTimeFormat(pattern="yyyy+mm+dd"이런식으로 설정하면 됨. 둘 중 하나만 써야함.
+
+
+
+
+
+
+
+
+
+
+
+

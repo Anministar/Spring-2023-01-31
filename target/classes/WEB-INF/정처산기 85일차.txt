@@ -1,0 +1,90 @@
+@@@ 84일차에 있었던 에러, 뭐 Controller와 Service의 Bean객체를 형성하지 못한다는 에러는 Bcrypt에서 발생한 에러이고 이 해결방법은 external jars를 추가하고 WEB-INF 파일에 lib 폴더를 만들어서 jar를 복사하는 방법이다 만약 안된다면 external jars를 할 때 jars 파일의 경로가 C-sts 뭐시기 Spring exe 파일이랑 같은 위치에 있게끔해서 불러오면 됨.
+
+
+			## 트랜젝션 ##
+롤벡 처리 Ex) 계좌 송금!
+
+++) 결합도를 낮추는 작업을 하기 위해서 Interface를 따로 빼고 Service에서는 완성된 코드만 가지게끔하는 작업
+TestDaoImpl 우클릭 - Refactor - Extract Interface 해서 하면됨.
+
+
+
+++) root-context 에 NameSpace에 보면 트랜젝션(tx)가 있는데 체크하고 저장하고 TestServiceImpl에 와야지 @Transactional 처리가 되는 것 같음.
+그러고 root-context에 bean객체를 생성해줘야함. ==> PPT 참고(클라우드)
+
+==>
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven />
+
+1. <tx:annotation-driven /> : 어노테이션 추가할 수 있게하는거
+2. <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+
+<property name="dataSource" ref="dataSource" />
+
+</bean> : PlatformTransactionManager tm = new DataSourceTransactionManager(ds); 이거 생성할 수 있게 bean객체 등록하는것.
+
++++) TxTests들은 root-context.xml를 경로로 잡기 때문에 component-scan을 추가해줘야함 service나 dao나
+
+
+++) JUnit에서 함수에 커서 클릭하고 우클릭 run as server 하면 그 함수만 실행되는것같음.
+
+
+		@@@@@ TxTests3에서 오류 발생 - 처리해봐야함. @@@@@org.springframework.beans.factory.UnsatisfiedDependencyException : Error creating bean with name AService : Unsatisfied dependency expressed through field bservice;
+
+==> BService에서 implements 되어있는 부분 업애야 오류가 사라짐.
+
+
+			## mybatis와 Jpa ##
+maven repository에 가서 mybatis 검색하면 mybatis와 mybatis spring이 나오는데 둘 다 dependency 연결해야함.
+
+Jpa : @Entity 어노테이션을 사용하여 테이블을 만들 수 있으나 복잡하게는 사용하기 조금 어려움이 있음
+Mybatis는 복잡한 쿼리에 있어 문제가 없다. 그러나 구성하는게 어렵다
+
+자바에서는 Mysql 쿼리문 if를 처리할 수가 없었는데 mybatis나 jpa는 할 수 있음.
+
+++) 그리고 Bean 객체를 추가해야함
+
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+그리고 ref가 references의 약자인걸 처음 앎..ㅋㅋ..
+
+
+++) ---Factory는 앞에 --- 이 부분을 만들어 달라는 패턴임.
+
+++) sqlSession == sql을 처리하는 전체 블럭을 트랜젝션처리해줘서 DB랑 연결하는 것.(쿼리문 전달 및 DB연결)
+++) sqlSessionFactory == sqlSession을 만들어 주는애
+
+
+
+
+@@@@@ MybatisTest에서 오류난 부분은 버젼이 안맞아서 그런거임 @@@@@
+==> 2.0.7 버젼으로 바꿔주기!!
+
+
+
+			# com.test.mapper #
+++) @SELECT 로 쿼리문 날리는거랑
+xml로 쿼리문 날리는거 둘 다 해볼꺼임
+
+
+웹 브라우져에 doctype mapper 검색
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+이런거 찾아서 복붙
+
+++) servlet-context에 namespace에 mybatis 체크 한 후 아래 코드를 root-context에 복사 붙여넣기 하기
+
+xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+
+http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+
+
+
+

@@ -46,6 +46,15 @@ public class BoardController {
 		return "/board/list";
 		
 	}
+	
+	@GetMapping("read")
+	public void dogetRead() {
+		log.info("board read....");
+	}
+	@GetMapping("post")
+	public void dogetPost() {
+		log.info("board post....");
+	}
 
 	
 	

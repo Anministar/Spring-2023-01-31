@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.test.tx.AService;
-import com.test.tx.BService;
+import com.test.service.TestService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -16,27 +15,22 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class TxTests3 {
+public class TxTests2 {
 	
 	@Autowired
-	AService aservice;
-	
-	@Autowired
-	BService bservice;
+	TestService service;
 	
 	@Test
 	public void func1() throws Exception {
-		// Tx간 독립적으로 동작
-		aservice.func1(); //tx	-commit
-		bservice.func1(); //tx	-commit
+		service.func1(); 			// Tx 기본 값 적용
 	}
 	@Test
 	public void func2() throws Exception {
-		aservice.func2(); // propagation=Propagation.Required(기본값적용)
+		service.func2(); 			// 모든 Exception에 대한 Tx 적용
 	}
 	@Test
 	public void func3() throws Exception {
-		 				//
+		service.func3(); 			// RuntimeException에 대한 Tx 적용
 	}
 
 }
